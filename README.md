@@ -1,5 +1,5 @@
 # docker-ubuntu-php-zts-compile
-A docker solution for compiling php-zts for ubuntu
+A docker solution for compiling php-zts for ubuntu 18.04
 
 run ./wrapper, deb results in output
 
