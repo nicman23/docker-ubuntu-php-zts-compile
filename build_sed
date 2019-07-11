@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cd /opt/php/
+apt-get source -y phpSED_IDENTIFIER_php_v
+cd */
+sed 's/phpSED_IDENTIFIER_php_v/phpSED_IDENTIFIER_php_v-zts/g' -i debian/*
+
+DEB_BUILD_OPTIONS=nocheck debuild -us -uc -b
+
+mv /opt/php/*.deb /output

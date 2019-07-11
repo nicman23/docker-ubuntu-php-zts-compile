@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+v='7.2'
+
+sed "s/SED_IDENTIFIER_uid/$UID/g" Dockerfile_sed |
+sed "s/SED_IDENTIFIER_php_v/${v}/g"> Dockerfile
+
+sed "s/SED_IDENTIFIER_php_v/${v}/g" build_sed > build
+chmod +x build
+
+docker build --tag ubuntu-php-builder --pull .
+docker run -ti -v "$(pwd)"/output:/output --user builder ubuntu-php-builder
+
+docker rmi -f ubuntu-php-builder

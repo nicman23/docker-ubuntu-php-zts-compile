@@ -1,0 +1,20 @@
+FROM ubuntu:18.04
+RUN sed 's/\# deb-src/deb-src/g' -i /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y build-essential
+ENV TZ=Europe/Athens
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get build-dep -y phpSED_IDENTIFIER_php_v
+RUN apt-get install -y devscripts lintian 
+
+
+RUN useradd --uid SED_IDENTIFIER_uid builder
+ADD build /opt/build
+RUN chown builder:builder -R /opt/
+USER builder
+
+RUN mkdir /opt/php
+
+VOLUME /output
+CMD '/opt/build'
+
